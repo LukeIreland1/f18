@@ -1,9 +1,9 @@
 <!--===- documentation/C++style.md 
-  
+
    Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
    See https://llvm.org/LICENSE.txt for license information.
    SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
-  
+
 -->
 
 ## In brief:
@@ -19,6 +19,7 @@ is clear on usage, follow it.
   follow it.  [Google's](https://google.github.io/styleguide/cppguide.html)
   is pretty good and comes with lots of justifications for its rules.
 * Reasonable exceptions to these guidelines can be made.
+* Before submitting a pull request, review the [checkist below](#checklist).
 * Be aware of some workarounds for known issues in older C++ compilers that should
   still be able to compile f18. They are listed at the end of this document.
 
@@ -295,6 +296,23 @@ in a way that leads to weirdly capitalized abbreviations in names
 like `Http`.
 Consistency is one of many aspects in the pursuit of clarity,
 but not an end in itself.
+
+## <a name="checklist"></a>Pull request checklist
+Before submitting a pull request, review the following items:
+*  Verify that all files have a license.
+*  Make sure that all source lines have 80 or fewer characters.
+*  Run `git diff` on all files to look for spurious changes such as `include <iostream>`.
+*  Run clang-format version 7 on all .cc and .h files.
+*  Build and test with both GNU and clang compilers.
+*  Make sure that all error messages you added appear in tests.
+*  Annotate the code and tests with appropriate references to constraint and requirement numbers in the standard.
+*  Review declarations for proper use of `constexpr` and `const`.
+*  Ensure that the names of C++ constructs (functions, classes, etc.) evoke their purpose.
+*  Ensure that you check all dereferences of non-owning pointers.
+*  Ensure that the scopes of all functions and variables are as local as possible.
+*  Try to make all functions fit on a screen (40 lines).
+*  Declare non-member functions static when possible.
+*  Review previous pull request comments and make sure that you've actually made all of the changes that were requested.
 
 ## C++ compiler bug workarounds
 Below is a list of workarounds for C++ compiler bugs met with f18 that, even
