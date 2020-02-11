@@ -19,22 +19,19 @@
 #   - test_x is not folded (it is neither .true. nor .false.). This means the
 #     compiler could not fold the expression.
 
-PATH=/usr/bin:/bin
-srcdir=$(dirname $0)
-F18CC=${F18:-../../../tools/f18/bin/f18}
-CMD="$F18CC -fdebug-dump-symbols -fparse-only"
+CMD="$2 -fdebug-dump-symbols -fparse-only"
 
 if [[ $# < 1 ]]; then
   echo "Usage: $0 <fortran-source> [-pgmath=<true/false>]"
   exit 1
 fi
 
-src=$srcdir/$1
+src=$1
 [[ ! -f $src ]] && echo "File not found: $src" && exit 1
 
-temp=temp-$1
-rm -rf $temp
-mkdir $temp
+temp=$(echo "$src" | cut -f 1 -d '.')
+temp="Outputs/$temp"
+mkdir -p $temp
 [[ $KEEP ]] || trap "rm -rf $temp" EXIT
 
 # Check if tests should assume folding is using libpgmath

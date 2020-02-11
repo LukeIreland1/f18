@@ -24,5 +24,16 @@ case $1 in
 esac
 USER_OPTIONS=`sed -n 's/^ *! *OPTIONS: *//p' $src`
 echo $USER_OPTIONS
-temp=`mktemp -d ./tmp.XXXXXX`
+# Set source directory depending on if it is a single file or multiple
+if [[ "$src" != "${src%[[:space:]]*}" ]]
+then
+  read -A $temp <<< $src
+  temp=$temp[1]
+  echo $temp
+  temp=$(echo "$temp" | cut -f 1 -d '.')
+else
+  temp=$(echo "$src" | cut -f 1 -d '.')
+fi
+temp="Outputs/$temp"
+mkdir -p $temp
 [[ $KEEP ]] || trap "rm -rf $temp" EXIT
