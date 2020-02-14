@@ -1,4 +1,5 @@
-! RUN: ${F18} -fparse-only %s
+!RUN: %S/test_any.sh %s %flang
+! EXEC: ${F18} -fparse-only %s
 
 module mm2a
 implicit none

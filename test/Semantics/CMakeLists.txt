@@ -298,22 +298,6 @@ set(CRITICAL_TESTS
   critical04.f90
 )
 
-set(GETSYMBOLS_TESTS
-  getsymbols01.f90
-  getsymbols02-*.f90
-  getsymbols03-a.f90
-  getsymbols04.f90
-  getsymbols05.f90
-)
-
-set(GETDEFINITION_TESTS
-  getdefinition01.f90
-  getdefinition02.f
-  getdefinition03-a.f90
-  getdefinition04.f90
-  getdefinition05.f90
-)
-
 set(F18 $<TARGET_FILE:f18>)
 
 foreach(test ${ERROR_TESTS})
@@ -332,7 +316,7 @@ foreach(test ${MODFILE_TESTS})
 endforeach()
 
 foreach(test ${LABEL_TESTS} ${CANONDO_TESTS} ${DOCONCURRENT_TESTS}
-             ${CRITICAL_TESTS} ${GETSYMBOLS_TESTS} ${GETDEFINITION_TESTS})
+             ${CRITICAL_TESTS})
   add_test(NAME ${test}
     COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/test_any.sh ${test} ${F18})
 endforeach()
