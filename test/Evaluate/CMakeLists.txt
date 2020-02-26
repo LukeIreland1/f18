@@ -134,15 +134,6 @@ target_link_libraries(folding-test
 )
 
 set(FOLDING_TESTS
-  folding01.f90
-  folding02.f90
-  folding03.f90
-  folding04.f90
-  folding05.f90
-  folding06.f90
-  folding07.f90
-  folding08.f90
-  folding09.f90
 )
 
 add_test(Expression expression-test)
